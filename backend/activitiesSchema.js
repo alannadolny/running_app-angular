@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 ActivitySchema = new mongoose.Schema({
-  type: {
-    type: String,
+  distance: {
+    type: Number,
     required: true,
   },
   start: {
@@ -14,6 +14,10 @@ ActivitySchema = new mongoose.Schema({
     required: true,
   },
   time: {
+    type: Date,
+    required: true,
+  },
+  avgSpeed: {
     type: Number,
     required: true,
   },
