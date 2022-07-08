@@ -5,7 +5,13 @@ const Acitivity = require('./activitiesSchema');
 
 router.get('/', async (req, res) => {
   try {
-    const activities = await Acitivity.find({});
+    const activities = await Acitivity.aggregate([
+      {
+        $project: {
+          __v: 0,
+        },
+      },
+    ]);
     return res.send(activities);
   } catch (err) {
     return res.status(500).send(err);
