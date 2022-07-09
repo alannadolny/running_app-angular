@@ -1,4 +1,12 @@
-<button mat-raised-button routerLink="/form" color="primary">
+<app-activities-header></app-activities-header>
+<app-activities-charts></app-activities-charts>
+<app-activities-average-details></app-activities-average-details>
+<button
+  mat-raised-button
+  class="adding-button"
+  routerLink="/form"
+  color="primary"
+>
   Add new activity
 </button>
 <table
@@ -56,16 +64,22 @@
       >
         <div class="element-description">
           <p>
-            Start:
+            <strong>Start:</strong>
             {{ element.start.toLocaleTimeString() }}
             {{ element.start.toLocaleDateString("es-AR") }}
           </p>
           <p>
-            Finish: {{ element.finish.toLocaleTimeString() }}
+            <strong>Finish:</strong> {{ element.finish.toLocaleTimeString() }}
             {{ element.finish.toLocaleDateString("es-AR") }}
           </p>
-          <p>Avg Speed: {{ element.avgSpeed }} km/h</p>
-          <button (click)="deleteActivity(element._id)">Delete activity</button>
+          <p><strong>Avg Speed:</strong> {{ element.avgSpeed }} km/h</p>
+          <button
+            mat-raised-button
+            color="primary"
+            (click)="deleteActivity(element._id)"
+          >
+            Delete activity
+          </button>
         </div>
       </div>
     </td>

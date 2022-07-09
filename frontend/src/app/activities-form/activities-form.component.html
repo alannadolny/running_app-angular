@@ -1,151 +1,137 @@
-<form
-  class="form"
-  (ngSubmit)="
-    submit(
-      distance.value,
-      start.value,
-      finish.value,
-      avgSpeed.value,
-      kcalBurned.value
-    )
-  "
->
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label>Distance</mat-label>
-    <input
-      required
-      #distance="ngModel"
-      type="number"
-      matInput
-      placeholder="0"
-      name="distance"
-      ngModel
-      pattern="^[1-9][0-9]*"
-    />
-    <mat-error *ngIf="distance.errors && distance.errors['pattern']"
-      >Distance should be higher than 0 and consists of numbers only</mat-error
-    >
-    <mat-error *ngIf="distance.errors && distance.errors['required']"
-      >Distance is required</mat-error
-    >
-  </mat-form-field>
+<div>
+  <h1>Add new activity</h1>
 
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label>Avg speed</mat-label>
-    <input
-      required
-      pattern="^[1-9][0-9]*"
-      #avgSpeed="ngModel"
-      type="number"
-      matInput
-      placeholder="0"
-      name="avgSpeed"
-      ngModel
-    />
-    <mat-error *ngIf="avgSpeed.errors && avgSpeed.errors['pattern']"
-      >Avg speed should be higher than 0 and consists of numbers only</mat-error
-    >
-    <mat-error *ngIf="avgSpeed.errors && avgSpeed.errors['required']"
-      >Avg speed is required</mat-error
-    >
-  </mat-form-field>
+  <form class="form" [formGroup]="activityForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Distance</mat-label>
+      <input
+        type="number"
+        formControlName="distance"
+        matInput
+        placeholder="0"
+        name="distance"
+      />
 
-  <mat-form-field class="full-width" appearance="fill">
-    <mat-label>Burned kcal</mat-label>
-    <input
-      required
-      #kcalBurned="ngModel"
-      type="number"
-      matInput
-      placeholder="0"
-      name="kcalBurned"
-      ngModel
-      pattern="^[1-9][0-9]*"
-    />
-    <mat-error *ngIf="kcalBurned.errors && kcalBurned.errors['pattern']"
-      >Burned kcal should be higher than 0 and consists of numbers
-      only</mat-error
-    >
-    <mat-error *ngIf="kcalBurned.errors && kcalBurned.errors['required']">
-      Burned kcal is required</mat-error
-    >
-  </mat-form-field>
+      <mat-error *ngIf="activityForm.controls['distance'].errors?.['required']">
+        Distance is required.
+      </mat-error>
+      <mat-error *ngIf="activityForm.controls['distance'].errors?.['pattern']">
+        Distance must be a positive number.
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="fill">
-    <mat-label>Start time</mat-label>
-    <input
-      required
-      matInput
-      #start="ngModel"
-      [ngxMatDatetimePicker]="picker"
-      placeholder="Pick start time"
-      name="start"
-      ngModel
-    />
-    <mat-error *ngIf="start.errors && start.errors['required']"
-      >Start date is required</mat-error
-    >
-    <mat-error *ngIf="compare(start.value)"
-      >Start date must be in past
-    </mat-error>
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="$any(picker)"
-    ></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker
-      #picker
-      [showSpinners]="true"
-      [showSeconds]="true"
-      [stepHour]="1"
-      [stepMinute]="1"
-      [stepSecond]="1"
-      [touchUi]="false"
-      [enableMeridian]="false"
-      [disableMinute]="false"
-      [hideTime]="false"
-    >
-    </ngx-mat-datetime-picker>
-  </mat-form-field>
-  <br />
-  <mat-form-field appearance="fill">
-    <mat-label>Finish time</mat-label>
-    <input
-      required
-      #finish="ngModel"
-      matInput
-      [ngxMatDatetimePicker]="finishPicker"
-      placeholder="Pick finish time"
-      name="finish"
-      ngModel
-    />
-    <mat-error *ngIf="finish.errors && finish.errors['required']"
-      >Finish date is required</mat-error
-    >
-    <mat-error *ngIf="compare(start.value)"
-      >Finish date must be in past
-    </mat-error>
-    <mat-datepicker-toggle
-      matSuffix
-      [for]="$any(finishPicker)"
-    ></mat-datepicker-toggle>
-    <ngx-mat-datetime-picker
-      #finishPicker
-      [showSpinners]="true"
-      [showSeconds]="true"
-      [stepHour]="1"
-      [stepMinute]="1"
-      [stepSecond]="1"
-      [touchUi]="false"
-      [enableMeridian]="false"
-      [disableMinute]="false"
-      [hideTime]="false"
-    >
-    </ngx-mat-datetime-picker>
-  </mat-form-field>
-  <br />
-  <button type="submit" mat-raised-button color="primary">Submit</button>
-  <br />
-  <button type="button" mat-raised-button color="primary" (click)="undo()">
-    Undo
-  </button>
-</form>
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Avg speed</mat-label>
+      <input
+        type="number"
+        formControlName="avgSpeed"
+        matInput
+        placeholder="0"
+        name="avgSpeed"
+      />
+      <mat-error *ngIf="activityForm.controls['avgSpeed'].errors?.['required']">
+        Avg speed is required.
+      </mat-error>
+      <mat-error *ngIf="activityForm.controls['avgSpeed'].errors?.['pattern']">
+        Avg speed must be a positive number.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="full-width" appearance="fill">
+      <mat-label>Burned kcal</mat-label>
+      <input
+        type="number"
+        matInput
+        formControlName="kcalBurned"
+        placeholder="0"
+        name="kcalBurned"
+      />
+      <mat-error
+        *ngIf="activityForm.controls['kcalBurned'].errors?.['required']"
+      >
+        Burned kcal is required.
+      </mat-error>
+      <mat-error
+        *ngIf="activityForm.controls['kcalBurned'].errors?.['pattern']"
+      >
+        Burned kcal must be a positive number.
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Start time</mat-label>
+      <input
+        matInput
+        [ngxMatDatetimePicker]="picker"
+        placeholder="Pick start time"
+        name="start"
+        formControlName="start"
+      />
+      <mat-error *ngIf="activityForm.controls['start'].errors?.['required']">
+        Start date is required.
+      </mat-error>
+      <mat-error *ngIf="activityForm.controls['start'].errors?.['beforeToday']">
+        Start date must be in a past.
+      </mat-error>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="$any(picker)"
+      ></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker
+        #picker
+        [showSpinners]="true"
+        [showSeconds]="true"
+        [stepHour]="1"
+        [stepMinute]="1"
+        [stepSecond]="1"
+        [touchUi]="false"
+        [enableMeridian]="false"
+        [disableMinute]="false"
+        [hideTime]="false"
+      >
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+    <br />
+    <mat-form-field appearance="fill">
+      <mat-label>Finish time</mat-label>
+      <input
+        matInput
+        [ngxMatDatetimePicker]="finishPicker"
+        placeholder="Pick finish time"
+        name="finish"
+        formControlName="finish"
+      />
+      <mat-error *ngIf="activityForm.controls['finish'].errors?.['required']">
+        Finish date is required.
+      </mat-error>
+      <mat-error
+        *ngIf="activityForm.controls['finish'].errors?.['beforeToday']"
+      >
+        Finish date must be in a past.
+      </mat-error>
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="$any(finishPicker)"
+      ></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker
+        #finishPicker
+        [showSpinners]="true"
+        [showSeconds]="true"
+        [stepHour]="1"
+        [stepMinute]="1"
+        [stepSecond]="1"
+        [touchUi]="false"
+        [enableMeridian]="false"
+        [disableMinute]="false"
+        [hideTime]="false"
+      >
+      </ngx-mat-datetime-picker>
+    </mat-form-field>
+    <br />
+    <button type="submit" mat-raised-button color="primary">Submit</button>
+    <br />
+    <button type="button" mat-raised-button color="primary" (click)="undo()">
+      Undo
+    </button>
+  </form>
+</div>

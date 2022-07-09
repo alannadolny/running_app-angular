@@ -17,12 +17,20 @@ import {
   NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ActivitiesChartsComponent } from './activities-charts/activities-charts.component';
+import { ChartModule } from 'primeng/chart';
+import { ActivitiesAverageDetailsComponent } from './activities-average-details/activities-average-details.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { ActivitiesHeaderComponent } from './activities-header/activities-header.component';
 @NgModule({
   declarations: [
     AppComponent,
     ActivitiesListComponent,
     ActivitiesFormComponent,
+    ActivitiesChartsComponent,
+    ActivitiesAverageDetailsComponent,
+    ActivitiesHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,9 @@ import { FormsModule } from '@angular/forms';
     NgxMatTimepickerModule,
     NgxMatNativeDateModule,
     FormsModule,
+    ChartModule,
+    MatTabsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

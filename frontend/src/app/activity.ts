@@ -5,7 +5,7 @@ export interface activity {
   finish: Date;
   time?: number;
   avgSpeed: number;
-  kcalBurned?: number;
+  kcalBurned: number;
 }
 
 export interface deletedActivity {

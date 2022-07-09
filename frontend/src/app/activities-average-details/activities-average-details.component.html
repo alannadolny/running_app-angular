@@ -1,0 +1,33 @@
+<div class="average-details">
+  <p>Your average running details</p>
+  <mat-tab-group class="info-wraper">
+    <mat-tab label="Distance" class="info">
+      Your average running distance is
+      <strong>{{ round(avgDistance) }} m</strong>. Globally, this year all the
+      runners have covered a combined distance of 3.0 billion km. On average,
+      the average distance per run is 6.3km or 6.6km for male runners and 5.5km
+      for female runners
+    </mat-tab>
+    <mat-tab label="Time" class="info">
+      Your average running time is
+      <strong>{{ round(avgTime / 3600000) }} h</strong>. All the runners have
+      approximately 39 minutes per run.
+    </mat-tab>
+    <mat-tab label="Burned kcal" class="info">
+      Your average burned kcal is
+      <strong>{{ round(avgBurnedKcal) }} kcal</strong>. If your body weight is
+      higher, you burn more calories. A 140-pound person running at a 10-minute
+      mile (roughly six miles per hour) will burn 318 calories in 30 minutes.
+      Running at the same pace for the same amount of time, a 180-pound person
+      will burn roughly 408 calories.
+    </mat-tab>
+    <mat-tab label="Avg speed" class="info">
+      Your average running speed is
+      <strong>{{ round(avgSpeed) }} km/h</strong>. A noncompetitive, relatively
+      in-shape runner usually completes one mile in about 9 to 10 minutes, on
+      average. If you're new to running, you might run one mile in closer to 12
+      to 15 minutes as you build up endurance. Elite marathon runners average a
+      mile in around 4 to 5 minutes.
+    </mat-tab>
+  </mat-tab-group>
+</div>

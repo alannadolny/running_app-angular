@@ -1,0 +1,26 @@
+<div class="charts">
+  <div class="card">
+    <p-chart
+      type="line"
+      [data]="distanceData"
+      [options]="basicOptions"
+    ></p-chart>
+  </div>
+  <div class="card">
+    <p-chart
+      type="bar"
+      [data]="burnedKcalData"
+      [options]="basicOptions"
+    ></p-chart>
+  </div>
+  <div class="card">
+    <p-chart
+      type="bar"
+      [data]="avgSpeedData"
+      [options]="basicOptions"
+    ></p-chart>
+  </div>
+  <div class="card">
+    <p-chart type="line" [data]="timeData" [options]="basicOptions"></p-chart>
+  </div>
+</div>

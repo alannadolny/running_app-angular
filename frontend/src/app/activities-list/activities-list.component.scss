@@ -1,5 +1,11 @@
+.adding-button {
+  width: calc(100% - 40px);
+  margin: 20px;
+}
+
 table {
-  width: 100%;
+  width: calc(100% - 40px);
+  margin: 20px;
   tr {
     &.detail-row {
       height: 0;
