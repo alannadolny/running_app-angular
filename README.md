@@ -89,5 +89,4 @@ Projekt zakończony: 12 Lipiec
 <img src="./images/2.gif"/>
 <img src="./images/3.gif"/>
 <img src="./images/4.gif"/>
-<img src="./images/4.gif"/>
 <img src="./images/5.gif"/>
